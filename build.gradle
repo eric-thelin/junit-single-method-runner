@@ -1,0 +1,25 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+tasks.eclipse.dependsOn 'cleanEclipse'
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    samples {
+	compileClasspath = sourceSets.main.runtimeClasspath
+    }
+    
+    test {
+	compileClasspath += sourceSets.samples.output
+	runtimeClasspath += sourceSets.samples.output
+    }
+}
+
+dependencies {
+    compile group: 'junit', name: 'junit-dep', version: '4.11'
+    
+    testCompile group: 'org.hamcrest', name: 'hamcrest-library', version: '1.3'
+}
