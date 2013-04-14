@@ -41,7 +41,7 @@ task acceptanceTest(type: Test, dependsOn: [uploadArchives, acceptanceTestClasse
     systemProperties(['samplesDirectory': file('samples')])
 }
 
-assert name == 'junit-single-test-method-runner'
+assert name == 'junit-single-method-runner'
 
 group = 'se.ericthelin'
 version = '1.0'
@@ -51,7 +51,7 @@ sourceCompatibility = 1.7
 jar {
     manifest {
 	attributes (
-		'Implementation-Title': 'Eric Thelin\'s JUnit Single Test Method Runner',
+		'Implementation-Title': 'JUnit Single Method Runner',
 		'Implementation-Version': version)
     }
 }
