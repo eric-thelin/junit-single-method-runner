@@ -32,19 +32,19 @@ public class SingleTestMethodRunner extends ParentRunner<Runner> {
 
     private List<Runner> computeChildren() throws InitializationError,
 	    ClassNotFoundException, NoTestsRemainException {
+
+	String testMethodPattern = getTestMethodPattern();
+
+	if (testMethodPattern == null) {
+	    return Collections.emptyList();
+	}
+
 	return Collections.singletonList(runnerFor(new TestMethodReference(
-		getTestMethodPattern())));
+		testMethodPattern)));
     }
 
     private String getTestMethodPattern() {
-	String result = System.getProperty(TEST_METHOD_PROPERTY_NAME);
-
-	if (result == null) {
-	    throw new RuntimeException(String.format(
-		    "Missing system property: %s", TEST_METHOD_PROPERTY_NAME));
-	}
-
-	return result;
+	return System.getProperty(TEST_METHOD_PROPERTY_NAME);
     }
 
     private static Runner runnerFor(TestMethodReference reference)
@@ -57,11 +57,13 @@ public class SingleTestMethodRunner extends ParentRunner<Runner> {
     private static BlockJUnit4ClassRunner junitRunnerFor(
 	    TestMethodReference reference) throws InitializationError,
 	    NoTestsRemainException {
-	BlockJUnit4ClassRunner runner = new BlockJUnit4ClassRunner(
+
+	BlockJUnit4ClassRunner result = new BlockJUnit4ClassRunner(
 		reference.getTestClass());
 
-	runner.filter(Filter.matchMethodDescription(reference.toDescription()));
-	return runner;
+	result.filter(Filter.matchMethodDescription(reference.toDescription()));
+
+	return result;
     }
 
     @Override

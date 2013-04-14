@@ -1,0 +1,20 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit-dep', version: '4.11'
+    testCompile group: 'org.hamcrest', name: 'hamcrest-library', version: '1.3'
+    testCompile group: 'se.ericthelin', name: 'junit-single-test-method-runner', version: '1.0'
+}
+
+test {
+    if (System.properties['test.method']) {
+	include('**/SingleTestMethodTest.class')
+	systemProperties(['test.method' : System.properties['test.method']])
+    }
+}

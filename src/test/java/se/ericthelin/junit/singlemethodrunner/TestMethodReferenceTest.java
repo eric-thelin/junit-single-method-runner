@@ -6,6 +6,7 @@ import static org.hamcrest.Matchers.is;
 import org.junit.Test;
 import org.junit.runner.Description;
 
+
 public class TestMethodReferenceTest {
 
     @Test
