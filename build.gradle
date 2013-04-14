@@ -45,7 +45,9 @@ tasks.eclipse.dependsOn 'cleanEclipse'
 
 task acceptanceTest(type: Test, dependsOn: [uploadArchives, acceptanceTestClasses]) {
     inputs.file 'samples/gradle/build.gradle'
-    outputs.file 'samples/gradle/build.gradle'
+    inputs.dir 'samples/gradle/src'
+    
+    outputs.dir testResultsDir
     
     testClassesDir = sourceSets.acceptanceTest.output.classesDir
     classpath = sourceSets.acceptanceTest.runtimeClasspath
