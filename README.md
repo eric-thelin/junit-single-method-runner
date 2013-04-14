@@ -15,4 +15,4 @@ In general, the steps required to run a single test method are as follows:
 
 1. Add the code in [src/main](src/main) to your classpath
 2. Annotate an empty class with `@RunWith(SingleMethodRunner.class)`
-3. Run the empty class with the system property `test.method` set to the fully qualified name of the test method that you want to run.
+3. Run the empty class as a JUnit test with the system property `test.method` set to the fully qualified name of the test method that you want to run.
