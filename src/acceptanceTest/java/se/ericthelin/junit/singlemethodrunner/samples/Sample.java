@@ -6,10 +6,10 @@ import se.ericthelin.junit.singlemethodrunner.SystemProperty;
 import se.ericthelin.junit.singlemethodrunner.util.StringExtensions;
 
 public enum Sample {
-    GRADLE;
+    GRADLE, GRADLE_MULTI_PROJECT;
 
     public File getRootDirectory() {
 	return new File(SystemProperty.EXAMPLES_DIRECTORY.getValue(),
-		StringExtensions.toLowerCamelCase(name()));
+		StringExtensions.toHyphenatedLowerCase(name()));
     }
 }

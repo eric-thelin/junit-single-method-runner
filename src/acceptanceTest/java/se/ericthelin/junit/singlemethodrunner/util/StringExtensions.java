@@ -46,4 +46,8 @@ public class StringExtensions {
 	    boolean lastCharacterWasSeparator) {
 	return result.length() != 0 && lastCharacterWasSeparator;
     }
+
+    public static String toHyphenatedLowerCase(String that) {
+	return that.toLowerCase().replace('_', '-');
+    }
 }

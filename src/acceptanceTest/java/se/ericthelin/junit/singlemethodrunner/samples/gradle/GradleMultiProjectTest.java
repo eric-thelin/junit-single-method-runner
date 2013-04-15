@@ -11,22 +11,21 @@ import org.junit.Test;
 
 import se.ericthelin.junit.singlemethodrunner.samples.Sample;
 
-public class GradleTest {
-
-    private static final Sample GRADLE_SAMPLE = Sample.GRADLE;
+public class GradleMultiProjectTest {
+    private static final Sample GRADLE_MULTI_PROJECT_EXAMPLE = Sample.GRADLE_MULTI_PROJECT;
 
     @Before
     public void clean() {
-	aGradleRun().in(rootDirectoryOf(GRADLE_SAMPLE)).forTasks("clean")
-		.perform();
+	aGradleRun().in(rootDirectoryOf(GRADLE_MULTI_PROJECT_EXAMPLE))
+		.forTasks("clean").perform();
     }
 
     @Test
     public void reportsSuccessWhenTestMethodSucceeds() {
 	assertThat(
 		outputOf(aGradleRun()
-			.in(rootDirectoryOf(GRADLE_SAMPLE))
-			.forTasks("test")
+			.in(rootDirectoryOf(GRADLE_MULTI_PROJECT_EXAMPLE))
+			.forTasks("main:test")
 			.withJVMArguments(
 				"-Dtest.method=com.example.StubbedTest.success")),
 		containsAll(":test", "BUILD SUCCESSFUL"));
@@ -36,8 +35,8 @@ public class GradleTest {
     public void reportsFailureWhenTestMethodFails() {
 	assertThat(
 		outputOf(aGradleRun()
-			.in(rootDirectoryOf(GRADLE_SAMPLE))
-			.forTasks("test")
+			.in(rootDirectoryOf(GRADLE_MULTI_PROJECT_EXAMPLE))
+			.forTasks("main:test")
 			.withJVMArguments(
 				"-Dtest.method=com.example.StubbedTest.failure")),
 		containsAll(":test", "BUILD FAILED"));

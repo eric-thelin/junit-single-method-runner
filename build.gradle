@@ -47,7 +47,11 @@ task acceptanceTest(type: Test, dependsOn: [uploadArchives, acceptanceTestClasse
     def examplesDir = file('examples')
     
     inputs.file "$examplesDir/gradle/build.gradle"
-    inputs.dir "$examplesDir/gradle/gradle/src"
+    inputs.dir  "$examplesDir/gradle/gradle/src"
+    inputs.file "$examplesDir/gradle-multi-project/build.gradle"
+    inputs.file "$examplesDir/gradle-multi-project/settings.gradle"
+    inputs.dir  "$examplesDir/gradle-multi-project/main/src"
+    inputs.dir  "$examplesDir/gradle-multi-project/testing/src"
     
     outputs.dir testResultsDir
     

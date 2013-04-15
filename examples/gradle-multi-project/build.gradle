@@ -1,0 +1,18 @@
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+
+    repositories {
+	mavenCentral()
+	mavenLocal()
+    }
+
+    test {
+	if (System.properties['test.method']) {
+	    testClassesDir = project(':testing').file('build/classes/main')   
+	    include('**/SingleMethodTest.class')
+	    systemProperties(['test.method' : System.properties['test.method']])
+	    
+	}
+    }
+}
