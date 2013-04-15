@@ -11,8 +11,8 @@ The project includes [an example](examples/gradle) that illustrates how you woul
 
 When executed, the command above would run the `success` method of the `StubbedTest` class in the `com.example` package. 
 
-In general, the steps required to run a single test method are as follows:
+In general, the steps required to run a single test method using the runner provided by this project are as follows:
 
-1. Add the code in [src/main](src/main) to your classpath
+1. Add the code in [src/main](src/main) to a source folder of your project
 2. Annotate an empty class with `@RunWith(SingleMethodRunner.class)`
 3. Run the empty class as a JUnit test with the system property `test.method` set to the fully qualified name of the test method that you want to run.
