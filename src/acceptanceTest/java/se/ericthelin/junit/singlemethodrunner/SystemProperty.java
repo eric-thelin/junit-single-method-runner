@@ -3,7 +3,7 @@ package se.ericthelin.junit.singlemethodrunner;
 import se.ericthelin.junit.singlemethodrunner.util.StringExtensions;
 
 public enum SystemProperty {
-    SAMPLES_DIRECTORY;
+    EXAMPLES_DIRECTORY;
 
     public String getName() {
 	return StringExtensions.toLowerCamelCase(name());

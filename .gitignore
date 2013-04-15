@@ -4,9 +4,9 @@
 /.settings
 /bin
 /build
-/samples/gradle/.classpath
-/samples/gradle/.gradle
-/samples/gradle/.project
-/samples/gradle/.settings
-/samples/gradle/bin
-/samples/gradle/build
+/examples/gradle/.classpath
+/examples/gradle/.gradle
+/examples/gradle/.project
+/examples/gradle/.settings
+/examples/gradle/bin
+/examples/gradle/build

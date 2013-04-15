@@ -9,7 +9,7 @@ public enum Sample {
     GRADLE;
 
     public File getRootDirectory() {
-	return new File(SystemProperty.SAMPLES_DIRECTORY.getValue(),
+	return new File(SystemProperty.EXAMPLES_DIRECTORY.getValue(),
 		StringExtensions.toLowerCamelCase(name()));
     }
 }

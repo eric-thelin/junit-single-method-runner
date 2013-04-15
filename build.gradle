@@ -44,15 +44,17 @@ eclipse.classpath { plusConfigurations += configurations.acceptanceTestRuntime }
 tasks.eclipse.dependsOn 'cleanEclipse'
 
 task acceptanceTest(type: Test, dependsOn: [uploadArchives, acceptanceTestClasses]) {
-    inputs.file 'samples/gradle/build.gradle'
-    inputs.dir 'samples/gradle/src'
+    def examplesDir = file('examples')
+    
+    inputs.file "$examplesDir/gradle/build.gradle"
+    inputs.dir "$examplesDir/gradle/gradle/src"
     
     outputs.dir testResultsDir
     
     testClassesDir = sourceSets.acceptanceTest.output.classesDir
     classpath = sourceSets.acceptanceTest.runtimeClasspath
     
-    systemProperties(['samplesDirectory': file('samples')])
+    systemProperties(['examplesDirectory': examplesDir])
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
