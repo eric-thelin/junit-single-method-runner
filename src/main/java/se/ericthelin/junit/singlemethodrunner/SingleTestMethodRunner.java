@@ -35,8 +35,6 @@ public class SingleTestMethodRunner extends ParentRunner<Runner> {
 
 	String testMethodPattern = getTestMethodPattern();
 
-	System.out.println("Pattern: " + testMethodPattern);
-
 	if (testMethodPattern == null) {
 	    return Collections.emptyList();
 	}
