@@ -2,8 +2,8 @@ package com.example;
 
 import org.junit.runner.RunWith;
 
-import se.ericthelin.junit.singlemethodrunner.SingleTestMethodRunner;
+import se.ericthelin.junit.singlemethodrunner.SingleMethodRunner;
 
-@RunWith(SingleTestMethodRunner.class)
+@RunWith(SingleMethodRunner.class)
 public class SingleMethodTest {
 }

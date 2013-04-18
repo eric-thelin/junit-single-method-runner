@@ -12,13 +12,13 @@ import org.junit.runners.BlockJUnit4ClassRunner;
 import org.junit.runners.ParentRunner;
 import org.junit.runners.model.InitializationError;
 
-public class SingleTestMethodRunner extends ParentRunner<Runner> {
+public class SingleMethodRunner extends ParentRunner<Runner> {
 
     private static final String TEST_METHOD_PROPERTY_NAME = "test.method";
 
     private final List<Runner> children;
 
-    public SingleTestMethodRunner(Class<?> klass) throws InitializationError {
+    public SingleMethodRunner(Class<?> klass) throws InitializationError {
 	super(klass);
 
 	try {
@@ -33,30 +33,20 @@ public class SingleTestMethodRunner extends ParentRunner<Runner> {
     private List<Runner> computeChildren() throws InitializationError,
 	    ClassNotFoundException, NoTestsRemainException {
 
-	String testMethodPattern = getTestMethodPattern();
+	String testMethodPattern = System
+		.getProperty(TEST_METHOD_PROPERTY_NAME);
 
 	if (testMethodPattern == null) {
 	    return Collections.emptyList();
 	}
 
-	return Collections.singletonList(runnerFor(new TestMethodReference(
-		testMethodPattern)));
+	return Collections
+		.singletonList(junitRunnerFor(new TestMethodReference(
+			testMethodPattern)));
     }
 
-    private String getTestMethodPattern() {
-	return System.getProperty(TEST_METHOD_PROPERTY_NAME);
-    }
-
-    private static Runner runnerFor(TestMethodReference reference)
-	    throws InitializationError, ClassNotFoundException,
-	    NoTestsRemainException {
-
-	return junitRunnerFor(reference);
-    }
-
-    private static BlockJUnit4ClassRunner junitRunnerFor(
-	    TestMethodReference reference) throws InitializationError,
-	    NoTestsRemainException {
+    private static Runner junitRunnerFor(TestMethodReference reference)
+	    throws InitializationError, NoTestsRemainException {
 
 	BlockJUnit4ClassRunner result = new BlockJUnit4ClassRunner(
 		reference.getTestClass());
